@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Tycoon - Restaurant Empire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .stat {
+            font-size: 1.1em;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .cooking-area {
+            text-align: center;
+        }
+
+        .cook-button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+            font-weight: bold;
+            min-width: 200px;
+        }
+
+        .cook-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .cook-button:active {
+            transform: scale(0.95);
+        }
+
+        .cook-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .dish {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dish:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: #fffbf0;
+        }
+
+        .dish-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .dish-price {
+            color: #27ae60;
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+
+        .dish-profit {
+            font-size: 0.9em;
+            color: #667eea;
+        }
+
+        .upgrades-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .upgrade-item {
+            background: white;
+            border: 2px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upgrade-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .upgrade-item.purchased {
+            background: #e8f5e9;
+            border-color: #27ae60;
+        }
+
+        .upgrade-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .upgrade-cost {
+            color: #e74c3c;
+            font-size: 0.95em;
+            margin: 5px 0;
+        }
+
+        .upgrade-effect {
+            color: #667eea;
+            font-size: 0.85em;
+            margin: 5px 0;
+        }
+
+        .upgrade-status {
+            color: #27ae60;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .building {
+            background: white;
+            border: 2px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .building:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .building.owned {
+            background: #e8f5e9;
+            border-color: #27ae60;
+        }
+
+        .building-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .building-info {
+            font-size: 0.9em;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .building-cost {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .building-owned {
+            color: #27ae60;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button.save-btn, button.load-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        button.save-btn:hover, button.load-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            animation: slideIn 0.3s ease;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .profit-indicator {
+            position: fixed;
+            pointer-events: none;
+            font-weight: bold;
+            animation: floatUp 1s ease forwards;
+        }
+
+        @keyframes floatUp {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            .upgrades-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .header-stats {
+                gap: 15px;
+            }
+
+            .stat {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍳 Cooking Tycoon 🍳</h1>
+            <p>Build your restaurant empire!</p>
+            <div class="header-stats">
+                <div class="stat">
+                    <div class="stat-label">💰 Money</div>
+                    <div class="stat-value">$<span id="money">0</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">📊 Level</div>
+                    <div class="stat-value"><span id="level">1</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">⏱️ Income/sec</div>
+                    <div class="stat-value">$<span id="income-per-sec">0</span></div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="section">
+                <h2>🍽️ Cooking</h2>
+                <div class="cooking-area">
+                    <div id="dish-list"></div>
+                    <div style="margin-top: 15px;">
+                        <button id="unlock-recipe-btn" class="cook-button" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            Unlock New Recipe (Level Up)
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>🏪 Upgrades & Equipment</h2>
+                <div class="upgrades-grid" id="upgrades-list"></div>
+            </section>
+
+            <section class="section">
+                <h2>🏗️ Buildings</h2>
+                <div id="buildings-list"></div>
+            </section>
+
+            <section class="section full-width">
+                <h2>📈 Statistics</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <div style="color: #666; font-size: 0.9em;">Total Earned</div>
+                        <div style="font-size: 1.5em; color: #27ae60; font-weight: bold;">$<span id="total-earned">0</span></div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <div style="color: #666; font-size: 0.9em;">Dishes Cooked</div>
+                        <div style="font-size: 1.5em; color: #667eea; font-weight: bold;"><span id="dishes-cooked">0</span></div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <div style="color: #666; font-size: 0.9em;">Play Time</div>
+                        <div style="font-size: 1.5em; color: #f5576c; font-weight: bold;"><span id="play-time">0m</span></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="footer">
+            <button class="save-btn" id="save-btn">💾 Save Game</button>
+            <button class="load-btn" id="load-btn">📂 Load Game</button>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        const gameState = {
+            money: 0,
+            level: 1,
+            totalEarned: 0,
+            dishesCookedCount: 0,
+            playTimeSeconds: 0,
+            dishes: [
+                { id: 1, name: '🍔 Burger', basePrice: 5, baseCost: 2, unlockedAt: 1 },
+                { id: 2, name: '🍕 Pizza', basePrice: 8, baseCost: 3, unlockedAt: 2 },
+                { id: 3, name: '🍜 Ramen', basePrice: 10, baseCost: 4, unlockedAt: 3 },
+                { id: 4, name: '🥩 Steak', basePrice: 15, baseCost: 6, unlockedAt: 4 },
+                { id: 5, name: '🍣 Sushi', basePrice: 20, baseCost: 8, unlockedAt: 5 },
+                { id: 6, name: '🦞 Lobster', basePrice: 30, baseCost: 12, unlockedAt: 6 },
+                { id: 7, name: '🍽️ Haute Cuisine', basePrice: 50, baseCost: 18, unlockedAt: 7 },
+                { id: 8, name: '✨ Golden Dish', basePrice: 100, baseCost: 40, unlockedAt: 8 }
+            ],
+            upgrades: [
+                { id: 1, name: 'Better Oven', cost: 100, multiplier: 1.2, type: 'price', purchased: false },
+                { id: 2, name: 'Fast Hands', cost: 200, multiplier: 1.3, type: 'price', purchased: false },
+                { id: 3, name: 'Spice Master', cost: 500, multiplier: 1.4, type: 'price', purchased: false },
+                { id: 4, name: 'Premium Ingredients', cost: 1000, multiplier: 1.5, type: 'price', purchased: false },
+                { id: 5, name: 'Michelin Training', cost: 5000, multiplier: 2, type: 'price', purchased: false },
+                { id: 6, name: 'Reduce Waste', cost: 250, multiplier: 0.8, type: 'cost', purchased: false },
+                { id: 7, name: 'Efficient Kitchen', cost: 750, multiplier: 0.7, type: 'cost', purchased: false },
+                { id: 8, name: 'Chef Automation', cost: 3000, multiplier: 0.6, type: 'cost', purchased: false }
+            ],
+            buildings: [
+                { id: 1, name: 'Small Restaurant', cost: 500, incomePerSec: 1, owned: 0 },
+                { id: 2, name: 'Medium Restaurant', cost: 2000, incomePerSec: 3, owned: 0 },
+                { id: 3, name: 'Large Restaurant', cost: 5000, incomePerSec: 7, owned: 0 },
+                { id: 4, name: 'Fine Dining', cost: 15000, incomePerSec: 15, owned: 0 },
+                { id: 5, name: 'Michelin Star', cost: 50000, incomePerSec: 50, owned: 0 }
+            ],
+            priceMultiplier: 1,
+            costMultiplier: 1
+        };
+
+        // Initialize Game
+        function init() {
+            renderDishes();
+            renderUpgrades();
+            renderBuildings();
+            updateDisplay();
+            setupEventListeners();
+            loadGame();
+            
+            // Auto-income from buildings
+            setInterval(() => {
+                const totalIncome = gameState.buildings.reduce((sum, b) => sum + (b.incomePerSec * b.owned), 0);
+                if (totalIncome > 0) {
+                    gameState.money += totalIncome;
+                    gameState.totalEarned += totalIncome;
+                    showNotification(`+$${totalIncome}`);
+                    updateDisplay();
+                }
+            }, 1000);
+
+            // Update playtime
+            setInterval(() => {
+                gameState.playTimeSeconds++;
+                updateDisplay();
+            }, 1000);
+        }
+
+        function setupEventListeners() {
+            document.getElementById('unlock-recipe-btn').addEventListener('click', unlockRecipe);
+            document.getElementById('save-btn').addEventListener('click', saveGame);
+            document.getElementById('load-btn').addEventListener('click', loadGame);
+        }
+
+        function renderDishes() {
+            const dishList = document.getElementById('dish-list');
+            dishList.innerHTML = '';
+            
+            gameState.dishes.forEach(dish => {
+                if (dish.unlockedAt <= gameState.level) {
+                    const price = Math.floor(dish.basePrice * gameState.priceMultiplier);
+                    const cost = Math.floor(dish.baseCost * gameState.costMultiplier);
+                    const profit = price - cost;
+
+                    const dishEl = document.createElement('div');
+                    dishEl.className = 'dish';
+                    dishEl.innerHTML = `
+                        <div class="dish-name">${dish.name}</div>
+                        <div class="dish-price">+$${profit} profit</div>
+                        <div class="dish-profit">Cost: $${cost} → Sell: $${price}</div>
+                    `;
+                    dishEl.addEventListener('click', () => cookDish(dish, price, cost));
+                    dishList.appendChild(dishEl);
+                }
+            });
+        }
+
+        function cookDish(dish, price, cost) {
+            if (gameState.money >= cost) {
+                gameState.money -= cost;
+                gameState.money += price;
+                gameState.totalEarned += (price - cost);
+                gameState.dishesCookedCount++;
+                
+                showProfitIndicator(price - cost);
+                showNotification(`Cooked ${dish.name}! +$${price - cost}`);
+                updateDisplay();
+            } else {
+                showNotification('Not enough money!', 'error');
+            }
+        }
+
+        function renderUpgrades() {
+            const upgradesList = document.getElementById('upgrades-list');
+            upgradesList.innerHTML = '';
+
+            gameState.upgrades.forEach(upgrade => {
+                const upgradeEl = document.createElement('div');
+                upgradeEl.className = `upgrade-item ${upgrade.purchased ? 'purchased' : ''}`;
+                
+                const effect = upgrade.type === 'price' 
+                    ? `Price ×${upgrade.multiplier}` 
+                    : `Cost ×${upgrade.multiplier}`;
+                
+                upgradeEl.innerHTML = `
+                    <div class="upgrade-name">${upgrade.name}</div>
+                    <div class="upgrade-cost">$${upgrade.cost}</div>
+                    <div class="upgrade-effect">${effect}</div>
+                    ${upgrade.purchased ? '<div class="upgrade-status">✓ Owned</div>' : ''}
+                `;
+
+                if (!upgrade.purchased) {
+                    upgradeEl.addEventListener('click', () => purchaseUpgrade(upgrade));
+                }
+                upgradesList.appendChild(upgradeEl);
+            });
+        }
+
+        function purchaseUpgrade(upgrade) {
+            if (gameState.money >= upgrade.cost && !upgrade.purchased) {
+                gameState.money -= upgrade.cost;
+                upgrade.purchased = true;
+
+                if (upgrade.type === 'price') {
+                    gameState.priceMultiplier *= upgrade.multiplier;
+                } else {
+                    gameState.costMultiplier *= upgrade.multiplier;
+                }
+
+                showNotification(`Purchased ${upgrade.name}!`);
+                renderDishes();
+                renderUpgrades();
+                updateDisplay();
+            } else if (upgrade.purchased) {
+                showNotification('Already owned!', 'error');
+            } else {
+                showNotification('Not enough money!', 'error');
+            }
+        }
+
+        function renderBuildings() {
+            const buildingsList = document.getElementById('buildings-list');
+            buildingsList.innerHTML = '';
+
+            gameState.buildings.forEach(building => {
+                const buildingEl = document.createElement('div');
+                buildingEl.className = `building ${building.owned > 0 ? 'owned' : ''}`;
+                
+                buildingEl.innerHTML = `
+                    <div class="building-name">${building.name}</div>
+                    <div class="building-info">+$${building.incomePerSec}/sec per unit</div>
+                    <div class="building-cost">Cost: $${building.cost}</div>
+                    ${building.owned > 0 ? `<div class="building-owned">Owned: ${building.owned}</div>` : ''}
+                `;
+
+                buildingEl.addEventListener('click', () => purchaseBuilding(building));
+                buildingsList.appendChild(buildingEl);
+            });
+        }
+
+        function purchaseBuilding(building) {
+            if (gameState.money >= building.cost) {
+                gameState.money -= building.cost;
+                building.owned++;
+                showNotification(`Purchased ${building.name}!`);
+                renderBuildings();
+                updateDisplay();
+            } else {
+                showNotification('Not enough money!', 'error');
+            }
+        }
+
+        function unlockRecipe() {
+            gameState.level++;
+            showNotification(`📈 Level up to ${gameState.level}! New recipes unlocked!`);
+            renderDishes();
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById('money').textContent = gameState.money.toFixed(0);
+            document.getElementById('level').textContent = gameState.level;
+            document.getElementById('total-earned').textContent = gameState.totalEarned.toFixed(0);
+            document.getElementById('dishes-cooked').textContent = gameState.dishesCookedCount;
+            
+            const totalIncome = gameState.buildings.reduce((sum, b) => sum + (b.incomePerSec * b.owned), 0);
+            document.getElementById('income-per-sec').textContent = totalIncome.toFixed(0);
+            
+            const minutes = Math.floor(gameState.playTimeSeconds / 60);
+            const seconds = gameState.playTimeSeconds % 60;
+            document.getElementById('play-time').textContent = `${minutes}m ${seconds}s`;
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.background = type === 'error' ? '#e74c3c' : '#27ae60';
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+
+        function showProfitIndicator(profit) {
+            const indicator = document.createElement('div');
+            indicator.className = 'profit-indicator';
+            indicator.textContent = `+$${profit}`;
+            indicator.style.color = '#27ae60';
+            indicator.style.left = Math.random() * 80 + 10 + '%';
+            indicator.style.top = '50%';
+            document.body.appendChild(indicator);
+            
+            setTimeout(() => indicator.remove(), 1000);
+        }
+
+        function saveGame() {
+            localStorage.setItem('cookingTycoonSave', JSON.stringify(gameState));
+            showNotification('Game saved successfully!');
+        }
+
+        function loadGame() {
+            const saved = localStorage.getItem('cookingTycoonSave');
+            if (saved) {
+                const loadedState = JSON.parse(saved);
+                Object.assign(gameState, loadedState);
+                renderDishes();
+                renderUpgrades();
+                renderBuildings();
+                updateDisplay();
+                showNotification('Game loaded!');
+            }
+        }
+
+        // Start the game
+        init();
+    </script>
+</body>
+</html>

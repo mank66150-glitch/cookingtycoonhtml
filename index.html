@@ -12,269 +12,382 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #FFB347 0%, #FF8C69 50%, #FFB347 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
             color: #333;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            background: linear-gradient(180deg, #FFF8DC 0%, #FFEAA7 100%);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
             overflow: hidden;
+            border: 5px solid #FF6B6B;
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FF8C69 0%, #FF6B6B 100%);
             color: white;
             padding: 20px;
             text-align: center;
+            border-bottom: 5px solid #FFB347;
         }
 
         header h1 {
-            font-size: 2.5em;
+            font-size: 3em;
             margin-bottom: 10px;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+            font-weight: bold;
         }
 
         .header-stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
             margin-top: 15px;
         }
 
         .stat {
             font-size: 1.1em;
-            background: rgba(255,255,255,0.2);
-            padding: 10px 20px;
-            border-radius: 8px;
+            background: rgba(255,255,255,0.3);
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 2px solid white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
         .stat-label {
-            opacity: 0.9;
-            font-size: 0.9em;
+            opacity: 0.95;
+            font-size: 0.85em;
+            font-weight: bold;
         }
 
         .stat-value {
             font-weight: bold;
-            font-size: 1.3em;
+            font-size: 1.4em;
+            margin-top: 5px;
         }
 
         main {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+            padding: 15px;
+        }
+
+        .kitchen-area {
+            grid-column: 1;
+            grid-row: 1 / 3;
         }
 
         .section {
-            background: #f8f9fa;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #FFF8DC 0%, #FFEAA7 100%);
+            border: 4px solid #FF6B6B;
+            border-radius: 15px;
             padding: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
         }
 
         .section h2 {
-            color: #667eea;
+            color: #FF6B6B;
             margin-bottom: 15px;
-            font-size: 1.5em;
-            border-bottom: 2px solid #667eea;
+            font-size: 1.8em;
+            border-bottom: 3px solid #FFB347;
             padding-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        .cooking-area {
-            text-align: center;
-        }
-
-        .cook-button {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        .cooking-display {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            border: 4px solid #654321;
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
             color: white;
-            border: none;
-            padding: 20px 40px;
-            font-size: 1.2em;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 10px 0;
+        }
+
+        .cooking-counter {
+            font-size: 4em;
             font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .current-dish-display {
+            font-size: 1.5em;
+            margin: 10px 0;
+            text-align: center;
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
             min-width: 200px;
         }
 
-        .cook-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
-        }
-
-        .cook-button:active {
-            transform: scale(0.95);
-        }
-
-        .cook-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: scale(1);
+        .dish-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .dish {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #FFE4B5 0%, #FFD699 100%);
+            border: 3px solid #FF8C69;
+            padding: 12px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
 
         .dish:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-color: #FF6B6B;
+        }
+
+        .dish:active {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            background: #fffbf0;
+        }
+
+        .dish-emoji {
+            font-size: 2.5em;
+            margin: 5px 0;
         }
 
         .dish-name {
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 0.95em;
             color: #333;
-        }
-
-        .dish-price {
-            color: #27ae60;
-            font-size: 1.2em;
-            margin: 5px 0;
+            margin-bottom: 3px;
         }
 
         .dish-profit {
+            color: #27ae60;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .customers-section {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border: 4px solid #4CAF50;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .customers-section h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .customer {
+            background: white;
+            border: 2px solid #4CAF50;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .customer-info {
+            flex: 1;
+        }
+
+        .customer-name {
+            font-weight: bold;
+            margin-bottom: 3px;
+            font-size: 0.95em;
+        }
+
+        .customer-order {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .customer-wait {
+            font-size: 0.75em;
+            color: #999;
+            margin-top: 3px;
+        }
+
+        .serve-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+            transition: all 0.2s ease;
             font-size: 0.9em;
-            color: #667eea;
+        }
+
+        .serve-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .serve-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .upgrades-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
 
         .upgrade-item {
-            background: white;
-            border: 2px solid #ddd;
-            padding: 15px;
+            background: linear-gradient(135deg, #E1BEE7 0%, #F3E5F5 100%);
+            border: 3px solid #9C27B0;
+            padding: 12px;
             border-radius: 8px;
-            text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            text-align: center;
         }
 
         .upgrade-item:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(156, 39, 176, 0.3);
         }
 
         .upgrade-item.purchased {
-            background: #e8f5e9;
+            background: linear-gradient(135deg, #C8E6C9 0%, #E8F5E9 100%);
             border-color: #27ae60;
         }
 
         .upgrade-name {
             font-weight: bold;
             color: #333;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
+            font-size: 0.95em;
         }
 
         .upgrade-cost {
-            color: #e74c3c;
-            font-size: 0.95em;
-            margin: 5px 0;
-        }
-
-        .upgrade-effect {
-            color: #667eea;
+            color: #E74C3C;
             font-size: 0.85em;
-            margin: 5px 0;
+            font-weight: bold;
         }
 
         .upgrade-status {
             color: #27ae60;
-            font-size: 0.85em;
+            font-size: 0.8em;
             font-weight: bold;
-            margin-top: 5px;
+            margin-top: 3px;
         }
 
         .building {
-            background: white;
-            border: 2px solid #ddd;
-            padding: 15px;
+            background: linear-gradient(135deg, #FFE0B2 0%, #FFCC80 100%);
+            border: 3px solid #FF9800;
+            padding: 12px;
             border-radius: 8px;
-            margin: 10px 0;
+            margin: 8px 0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            text-align: center;
         }
 
         .building:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(255, 152, 0, 0.3);
         }
 
         .building.owned {
-            background: #e8f5e9;
+            background: linear-gradient(135deg, #C8E6C9 0%, #E8F5E9 100%);
             border-color: #27ae60;
         }
 
         .building-name {
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1em;
             color: #333;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .building-info {
-            font-size: 0.9em;
+            font-size: 0.8em;
             color: #666;
-            margin: 5px 0;
+            margin: 3px 0;
         }
 
         .building-cost {
-            color: #e74c3c;
+            color: #E74C3C;
             font-weight: bold;
-            margin-top: 5px;
+            margin-top: 3px;
+            font-size: 0.85em;
         }
 
         .building-owned {
             color: #27ae60;
             font-weight: bold;
-            margin-top: 5px;
+            margin-top: 3px;
+            font-size: 0.85em;
+        }
+
+        .right-panel {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 15px;
         }
 
         .footer {
-            background: #f8f9fa;
-            padding: 15px 20px;
+            background: linear-gradient(135deg, #FF8C69 0%, #FF6B6B 100%);
+            padding: 12px 20px;
             text-align: center;
-            border-top: 1px solid #e0e0e0;
+            border-top: 4px solid #FFB347;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
-        button.save-btn, button.load-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+        .save-btn, .load-btn {
+            background: white;
+            color: #FF6B6B;
+            border: 3px solid white;
+            padding: 10px 18px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
         }
 
-        button.save-btn:hover, button.load-btn:hover {
-            background: #764ba2;
+        .save-btn:hover, .load-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }
 
         .notification {
@@ -284,27 +397,20 @@
             background: #27ae60;
             color: white;
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             animation: slideIn 0.3s ease;
             z-index: 1000;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            font-weight: bold;
+            border: 2px solid white;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }
 
         .profit-indicator {
             position: fixed;
             pointer-events: none;
             font-weight: bold;
-            animation: floatUp 1s ease forwards;
+            font-size: 1.5em;
+            animation: floatUp 1.5s ease forwards;
         }
 
         @keyframes floatUp {
@@ -314,33 +420,36 @@
             }
             to {
                 opacity: 0;
-                transform: translateY(-50px);
+                transform: translateY(-80px);
             }
         }
 
-        .full-width {
-            grid-column: 1 / -1;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             main {
                 grid-template-columns: 1fr;
             }
 
-            .upgrades-grid {
-                grid-template-columns: 1fr;
+            .kitchen-area {
+                grid-column: 1;
+                grid-row: auto;
             }
+        }
 
+        @media (max-width: 768px) {
             header h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
 
-            .header-stats {
-                gap: 15px;
+            .cooking-display {
+                min-height: 200px;
             }
 
-            .stat {
-                font-size: 0.95em;
+            .cooking-counter {
+                font-size: 2.5em;
+            }
+
+            .dish-list {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -348,69 +457,66 @@
 <body>
     <div class="container">
         <header>
-            <h1>🍳 Cooking Tycoon 🍳</h1>
-            <p>Build your restaurant empire!</p>
+            <h1>🍳 COOKING TYCOON 🍳</h1>
+            <p style="font-size: 1.2em; margin-bottom: 15px;">Build Your Restaurant Empire!</p>
             <div class="header-stats">
                 <div class="stat">
-                    <div class="stat-label">💰 Money</div>
+                    <div class="stat-label">💰 MONEY</div>
                     <div class="stat-value">$<span id="money">0</span></div>
                 </div>
                 <div class="stat">
-                    <div class="stat-label">📊 Level</div>
+                    <div class="stat-label">⭐ LEVEL</div>
                     <div class="stat-value"><span id="level">1</span></div>
                 </div>
                 <div class="stat">
-                    <div class="stat-label">⏱️ Income/sec</div>
+                    <div class="stat-label">👥 CUSTOMERS</div>
+                    <div class="stat-value"><span id="waiting-customers">0</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">📊 INCOME/SEC</div>
                     <div class="stat-value">$<span id="income-per-sec">0</span></div>
                 </div>
             </div>
         </header>
 
         <main>
-            <section class="section">
-                <h2>🍽️ Cooking</h2>
-                <div class="cooking-area">
-                    <div id="dish-list"></div>
-                    <div style="margin-top: 15px;">
-                        <button id="unlock-recipe-btn" class="cook-button" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            Unlock New Recipe (Level Up)
+            <div class="kitchen-area">
+                <section class="section">
+                    <h2>👨‍🍳 COOKING STATION</h2>
+                    <div class="cooking-display">
+                        <div class="cooking-counter" id="cooking-display">🍽️</div>
+                        <div class="current-dish-display" id="current-dish-display">Click a dish to cook!</div>
+                    </div>
+                    <div class="dish-list" id="dish-list"></div>
+                    <div style="margin-top: 15px; text-align: center;">
+                        <button id="unlock-recipe-btn" class="serve-btn" style="background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); padding: 12px 24px; font-size: 1em; width: 100%;">
+                            📚 UNLOCK NEW RECIPE - Level Up!
                         </button>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="section">
-                <h2>🏪 Upgrades & Equipment</h2>
-                <div class="upgrades-grid" id="upgrades-list"></div>
-            </section>
+                <section class="section customers-section">
+                    <h3>👥 WAITING CUSTOMERS</h3>
+                    <div id="customers-list" style="max-height: 250px; overflow-y: auto;"></div>
+                </section>
+            </div>
 
-            <section class="section">
-                <h2>🏗️ Buildings</h2>
-                <div id="buildings-list"></div>
-            </section>
+            <div class="right-panel">
+                <section class="section">
+                    <h2>⚡ UPGRADES</h2>
+                    <div class="upgrades-grid" id="upgrades-list"></div>
+                </section>
 
-            <section class="section full-width">
-                <h2>📈 Statistics</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                    <div style="background: white; padding: 15px; border-radius: 8px;">
-                        <div style="color: #666; font-size: 0.9em;">Total Earned</div>
-                        <div style="font-size: 1.5em; color: #27ae60; font-weight: bold;">$<span id="total-earned">0</span></div>
-                    </div>
-                    <div style="background: white; padding: 15px; border-radius: 8px;">
-                        <div style="color: #666; font-size: 0.9em;">Dishes Cooked</div>
-                        <div style="font-size: 1.5em; color: #667eea; font-weight: bold;"><span id="dishes-cooked">0</span></div>
-                    </div>
-                    <div style="background: white; padding: 15px; border-radius: 8px;">
-                        <div style="color: #666; font-size: 0.9em;">Play Time</div>
-                        <div style="font-size: 1.5em; color: #f5576c; font-weight: bold;"><span id="play-time">0m</span></div>
-                    </div>
-                </div>
-            </section>
+                <section class="section">
+                    <h2>🏢 RESTAURANTS</h2>
+                    <div id="buildings-list"></div>
+                </section>
+            </div>
         </main>
 
         <div class="footer">
-            <button class="save-btn" id="save-btn">💾 Save Game</button>
-            <button class="load-btn" id="load-btn">📂 Load Game</button>
+            <button class="save-btn" id="save-btn">💾 SAVE GAME</button>
+            <button class="load-btn" id="load-btn">📂 LOAD GAME</button>
         </div>
     </div>
 
@@ -422,16 +528,19 @@
             totalEarned: 0,
             dishesCookedCount: 0,
             playTimeSeconds: 0,
+            customersSatisfied: 0,
             dishes: [
-                { id: 1, name: '🍔 Burger', basePrice: 5, baseCost: 2, unlockedAt: 1 },
-                { id: 2, name: '🍕 Pizza', basePrice: 8, baseCost: 3, unlockedAt: 2 },
-                { id: 3, name: '🍜 Ramen', basePrice: 10, baseCost: 4, unlockedAt: 3 },
-                { id: 4, name: '🥩 Steak', basePrice: 15, baseCost: 6, unlockedAt: 4 },
-                { id: 5, name: '🍣 Sushi', basePrice: 20, baseCost: 8, unlockedAt: 5 },
-                { id: 6, name: '🦞 Lobster', basePrice: 30, baseCost: 12, unlockedAt: 6 },
-                { id: 7, name: '🍽️ Haute Cuisine', basePrice: 50, baseCost: 18, unlockedAt: 7 },
-                { id: 8, name: '✨ Golden Dish', basePrice: 100, baseCost: 40, unlockedAt: 8 }
+                { id: 1, name: 'Burger', emoji: '🍔', basePrice: 5, baseCost: 2, unlockedAt: 1 },
+                { id: 2, name: 'Pizza', emoji: '🍕', basePrice: 8, baseCost: 3, unlockedAt: 2 },
+                { id: 3, name: 'Ramen', emoji: '🍜', basePrice: 10, baseCost: 4, unlockedAt: 3 },
+                { id: 4, name: 'Steak', emoji: '🥩', basePrice: 15, baseCost: 6, unlockedAt: 4 },
+                { id: 5, name: 'Sushi', emoji: '🍣', basePrice: 20, baseCost: 8, unlockedAt: 5 },
+                { id: 6, name: 'Lobster', emoji: '🦞', basePrice: 30, baseCost: 12, unlockedAt: 6 },
+                { id: 7, name: 'Haute Cuisine', emoji: '🍽️', basePrice: 50, baseCost: 18, unlockedAt: 7 },
+                { id: 8, name: 'Golden Dish', emoji: '✨', basePrice: 100, baseCost: 40, unlockedAt: 8 }
             ],
+            customers: [],
+            customerNames: ['👨 Alex', '👩 Emma', '👨 Jake', '👩 Sofia', '👨 Marco', '👩 Lily', '👨 Tom', '👩 Sarah', '👨 Chris', '👩 Anna'],
             upgrades: [
                 { id: 1, name: 'Better Oven', cost: 100, multiplier: 1.2, type: 'price', purchased: false },
                 { id: 2, name: 'Fast Hands', cost: 200, multiplier: 1.3, type: 'price', purchased: false },
@@ -443,7 +552,7 @@
                 { id: 8, name: 'Chef Automation', cost: 3000, multiplier: 0.6, type: 'cost', purchased: false }
             ],
             buildings: [
-                { id: 1, name: 'Small Restaurant', cost: 500, incomePerSec: 1, owned: 0 },
+                { id: 1, name: 'Small Diner', cost: 500, incomePerSec: 1, owned: 0 },
                 { id: 2, name: 'Medium Restaurant', cost: 2000, incomePerSec: 3, owned: 0 },
                 { id: 3, name: 'Large Restaurant', cost: 5000, incomePerSec: 7, owned: 0 },
                 { id: 4, name: 'Fine Dining', cost: 15000, incomePerSec: 15, owned: 0 },
@@ -462,21 +571,29 @@
             setupEventListeners();
             loadGame();
             
+            // Customer arrival system
+            setInterval(() => {
+                if (gameState.customers.length < 5 + gameState.buildings.reduce((sum, b) => sum + b.owned, 0)) {
+                    addCustomer();
+                }
+            }, 3000);
+
             // Auto-income from buildings
             setInterval(() => {
                 const totalIncome = gameState.buildings.reduce((sum, b) => sum + (b.incomePerSec * b.owned), 0);
                 if (totalIncome > 0) {
                     gameState.money += totalIncome;
                     gameState.totalEarned += totalIncome;
-                    showNotification(`+$${totalIncome}`);
                     updateDisplay();
                 }
             }, 1000);
 
-            // Update playtime
+            // Update customers wait time
             setInterval(() => {
-                gameState.playTimeSeconds++;
-                updateDisplay();
+                gameState.customers.forEach(customer => {
+                    customer.waitTime++;
+                });
+                renderCustomers();
             }, 1000);
         }
 
@@ -485,6 +602,80 @@
             document.getElementById('save-btn').addEventListener('click', saveGame);
             document.getElementById('load-btn').addEventListener('click', loadGame);
         }
+
+        function addCustomer() {
+            const randomDish = gameState.dishes.filter(d => d.unlockedAt <= gameState.level)[Math.floor(Math.random() * gameState.dishes.filter(d => d.unlockedAt <= gameState.level).length)];
+            const randomName = gameState.customerNames[Math.floor(Math.random() * gameState.customerNames.length)];
+            
+            gameState.customers.push({
+                id: Math.random(),
+                name: randomName,
+                order: randomDish,
+                waitTime: 0,
+                patience: 30 + (gameState.level * 5)
+            });
+            
+            renderCustomers();
+        }
+
+        function renderCustomers() {
+            const customersList = document.getElementById('customers-list');
+            customersList.innerHTML = '';
+            
+            // Remove impatient customers
+            gameState.customers = gameState.customers.filter(c => c.waitTime < c.patience);
+
+            gameState.customers.forEach(customer => {
+                const patienceBar = Math.floor((customer.waitTime / customer.patience) * 100);
+                const customerEl = document.createElement('div');
+                customerEl.className = 'customer';
+                
+                customerEl.innerHTML = `
+                    <div class="customer-info">
+                        <div class="customer-name">${customer.name}</div>
+                        <div class="customer-order">Wants: ${customer.order.emoji} ${customer.order.name}</div>
+                        <div class="customer-wait">Wait: ${customer.waitTime}s / ${customer.patience}s</div>
+                        <div style="background: #ddd; height: 4px; border-radius: 2px; margin-top: 5px;">
+                            <div style="background: ${patienceBar > 70 ? '#e74c3c' : '#f39c12'}; height: 100%; width: ${patienceBar}%; border-radius: 2px;"></div>
+                        </div>
+                    </div>
+                    <button class="serve-btn" onclick="window.serveCustomer(${gameState.customers.indexOf(customer)})">
+                        Serve
+                    </button>
+                `;
+                customersList.appendChild(customerEl);
+            });
+
+            document.getElementById('waiting-customers').textContent = gameState.customers.length;
+        }
+
+        window.serveCustomer = function(index) {
+            const customer = gameState.customers[index];
+            const dish = customer.order;
+            const price = Math.floor(dish.basePrice * gameState.priceMultiplier);
+            const cost = Math.floor(dish.baseCost * gameState.costMultiplier);
+            
+            if (gameState.money >= cost) {
+                gameState.money -= cost;
+                gameState.money += price;
+                gameState.totalEarned += (price - cost);
+                gameState.dishesCookedCount++;
+                gameState.customersSatisfied++;
+
+                const tip = customer.waitTime > 20 ? Math.floor((price - cost) * 0.3) : Math.floor((price - cost) * 0.5);
+                gameState.money += tip;
+                gameState.totalEarned += tip;
+
+                showProfitIndicator(price - cost + tip);
+                showNotification(`${customer.name} says Thank You! +$${price - cost + tip} (with tip)`);
+                
+                gameState.customers.splice(index, 1);
+                renderCustomers();
+                updateDisplay();
+            } else {
+                showNotification('Not enough money!', 'error');
+            }
+        };
 
         function renderDishes() {
             const dishList = document.getElementById('dish-list');
@@ -499,9 +690,9 @@
                     const dishEl = document.createElement('div');
                     dishEl.className = 'dish';
                     dishEl.innerHTML = `
+                        <div class="dish-emoji">${dish.emoji}</div>
                         <div class="dish-name">${dish.name}</div>
-                        <div class="dish-price">+$${profit} profit</div>
-                        <div class="dish-profit">Cost: $${cost} → Sell: $${price}</div>
+                        <div class="dish-profit">+$${profit}</div>
                     `;
                     dishEl.addEventListener('click', () => cookDish(dish, price, cost));
                     dishList.appendChild(dishEl);
@@ -516,9 +707,17 @@
                 gameState.totalEarned += (price - cost);
                 gameState.dishesCookedCount++;
                 
+                document.getElementById('cooking-display').textContent = dish.emoji;
+                document.getElementById('current-dish-display').textContent = `Cooked ${dish.name}!`;
+                
                 showProfitIndicator(price - cost);
-                showNotification(`Cooked ${dish.name}! +$${price - cost}`);
+                showNotification(`Cooked ${dish.emoji} ${dish.name}! +$${price - cost}`);
                 updateDisplay();
+
+                setTimeout(() => {
+                    document.getElementById('cooking-display').textContent = '🍽️';
+                    document.getElementById('current-dish-display').textContent = 'Click a dish to cook!';
+                }, 800);
             } else {
                 showNotification('Not enough money!', 'error');
             }
@@ -533,18 +732,18 @@
                 upgradeEl.className = `upgrade-item ${upgrade.purchased ? 'purchased' : ''}`;
                 
                 const effect = upgrade.type === 'price' 
-                    ? `Price ×${upgrade.multiplier}` 
-                    : `Cost ×${upgrade.multiplier}`;
+                    ? `📈 Price ×${upgrade.multiplier}` 
+                    : `📉 Cost ×${upgrade.multiplier}`;
                 
                 upgradeEl.innerHTML = `
                     <div class="upgrade-name">${upgrade.name}</div>
-                    <div class="upgrade-cost">$${upgrade.cost}</div>
+                    <div class="upgrade-cost">${upgrade.purchased ? '✓ Owned' : `$${upgrade.cost}`}</div>
                     <div class="upgrade-effect">${effect}</div>
-                    ${upgrade.purchased ? '<div class="upgrade-status">✓ Owned</div>' : ''}
                 `;
 
                 if (!upgrade.purchased) {
                     upgradeEl.addEventListener('click', () => purchaseUpgrade(upgrade));
+                    upgradeEl.style.cursor = 'pointer';
                 }
                 upgradesList.appendChild(upgradeEl);
             });
@@ -561,7 +760,7 @@
                     gameState.costMultiplier *= upgrade.multiplier;
                 }
 
-                showNotification(`Purchased ${upgrade.name}!`);
+                showNotification(`✓ Purchased ${upgrade.name}!`);
                 renderDishes();
                 renderUpgrades();
                 updateDisplay();
@@ -582,12 +781,13 @@
                 
                 buildingEl.innerHTML = `
                     <div class="building-name">${building.name}</div>
-                    <div class="building-info">+$${building.incomePerSec}/sec per unit</div>
+                    <div class="building-info">+$${building.incomePerSec}/sec</div>
                     <div class="building-cost">Cost: $${building.cost}</div>
                     ${building.owned > 0 ? `<div class="building-owned">Owned: ${building.owned}</div>` : ''}
                 `;
 
                 buildingEl.addEventListener('click', () => purchaseBuilding(building));
+                buildingEl.style.cursor = 'pointer';
                 buildingsList.appendChild(buildingEl);
             });
         }
@@ -596,7 +796,7 @@
             if (gameState.money >= building.cost) {
                 gameState.money -= building.cost;
                 building.owned++;
-                showNotification(`Purchased ${building.name}!`);
+                showNotification(`🏢 Built ${building.name}!`);
                 renderBuildings();
                 updateDisplay();
             } else {
@@ -606,7 +806,7 @@
 
         function unlockRecipe() {
             gameState.level++;
-            showNotification(`📈 Level up to ${gameState.level}! New recipes unlocked!`);
+            showNotification(`📈 LEVEL UP to ${gameState.level}! New recipes unlocked!`);
             renderDishes();
             updateDisplay();
         }
@@ -614,15 +814,9 @@
         function updateDisplay() {
             document.getElementById('money').textContent = gameState.money.toFixed(0);
             document.getElementById('level').textContent = gameState.level;
-            document.getElementById('total-earned').textContent = gameState.totalEarned.toFixed(0);
-            document.getElementById('dishes-cooked').textContent = gameState.dishesCookedCount;
             
             const totalIncome = gameState.buildings.reduce((sum, b) => sum + (b.incomePerSec * b.owned), 0);
             document.getElementById('income-per-sec').textContent = totalIncome.toFixed(0);
-            
-            const minutes = Math.floor(gameState.playTimeSeconds / 60);
-            const seconds = gameState.playTimeSeconds % 60;
-            document.getElementById('play-time').textContent = `${minutes}m ${seconds}s`;
         }
 
         function showNotification(message, type = 'success') {
@@ -633,9 +827,8 @@
             document.body.appendChild(notification);
 
             setTimeout(() => {
-                notification.style.animation = 'slideIn 0.3s ease reverse';
-                setTimeout(() => notification.remove(), 300);
-            }, 2000);
+                notification.remove();
+            }, 2500);
         }
 
         function showProfitIndicator(profit) {
@@ -647,12 +840,12 @@
             indicator.style.top = '50%';
             document.body.appendChild(indicator);
             
-            setTimeout(() => indicator.remove(), 1000);
+            setTimeout(() => indicator.remove(), 1500);
         }
 
         function saveGame() {
             localStorage.setItem('cookingTycoonSave', JSON.stringify(gameState));
-            showNotification('Game saved successfully!');
+            showNotification('Game saved successfully! 💾');
         }
 
         function loadGame() {
@@ -663,8 +856,9 @@
                 renderDishes();
                 renderUpgrades();
                 renderBuildings();
+                renderCustomers();
                 updateDisplay();
-                showNotification('Game loaded!');
+                showNotification('Game loaded! 📂');
             }
         }
 
